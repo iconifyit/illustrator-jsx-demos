@@ -1,0 +1,3 @@
+DO NOT DELETE
+
+This folder is a central repository for common files used in my JSX scripts for Adobe Illustrator.
