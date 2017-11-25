@@ -39,3 +39,19 @@ YOU USE THIS SCRIPT COMPLETELY AT YOUR OWN RISK AND UNDER NO CIRCUMSTANCES WILL
 THE DEVELOPER AND/OR DISTRIBUTOR OF THIS SCRIPT BE HELD LIABLE FOR DAMAGES OF
 ANY KIND INCLUDING LOSS OF DATA OR DAMAGE TO HARDWARE OR SOFTWARE. IF YOU DO
 NOT AGREE TO THESE TERMS, DO NOT USE THIS SCRIPT.
+
+### References
+
+Below is a list of references I have found useful for learning Extendscript for Illustrator. 
+This list is by no means exhaustive. 
+
+* Full ExtendSript API & Class reference: https://yearbook.github.io/esdocs/#/
+* Adobe Scripting Resources: https://www.adobe.com/devnet/scripting.html
+* Adobe Illustrator Scripting Resources: https://www.adobe.com/devnet/illustrator/scripting.html
+* ExtendScript Toolkit: https://www.adobe.com/products/extendscript-toolkit.html
+* Adobe CEP Resources: https://github.com/Adobe-CEP/CEP-Resources
+* fabianmoronzirfas examples: https://github.com/fabianmoronzirfas/extendscript-101
+* More from Fabian: https://github.com/fabianmoronzirfas/extendscript
+* Must-have Scripts on Astute Graphics: https://astutegraphics.com/blog/30-must-free-illustrator-scripts-2/
+* P. J. Onori / Waybury Iconic scripts: https://github.com/somerandomdude/Iconic
+* More to come ...
