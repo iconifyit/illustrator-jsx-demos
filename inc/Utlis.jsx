@@ -26,12 +26,12 @@
 /**
  * Set the base include path.
  */
-#includepath "/Users/scott/github/iconify/jsx-common/";
+#includepath "inc/";
 
 /**
  * Include dependencies.
  */
-#include "JSON.jsxinc";
+#include "JSON.jsx";
 #include "Logger.jsx";
 
 /**

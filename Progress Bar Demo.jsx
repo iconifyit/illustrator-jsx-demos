@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @author Scott Lewis <scott@iconify.it>
  * @copyright 2017 Scott Lewis
  * @version 1.0.0
@@ -46,9 +46,9 @@
  * Include the libraries we need.
  * Includes can be a file name only. No leading slash /.
  */
-#include "JSON.jsxinc";
-#include "Utils.jsxinc";
-#include "Logger.jsxinc";
+#include "JSON.jsx";
+#include "Utils.jsx";
+#include "Logger.jsx";
 
 /**
  * Disable Illustrator's alerts.
