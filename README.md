@@ -55,4 +55,16 @@ This list is by no means exhaustive.
 * Must-have Scripts on Astute Graphics : https://astutegraphics.com/blog/30-must-free-illustrator-scripts-2/
 * P. J. Onori / Waybury Iconic scripts : https://github.com/somerandomdude/Iconic
 * Sublime-ExtendScript : https://github.com/ExtendScript/Sublime-ExtendScript
+* Examples from jtnimoy : https://github.com/jtnimoy/scripting-for-illustrator-tutorial
+* ExtendScript Toolkit Doco : http://estk.aenhancers.com/index.html
+* JavaScript Design Patterns : https://scotch.io/bar-talk/4-javascript-design-patterns-you-should-know
+* More JS Design Patterns : http://shichuan.github.io/javascript-patterns/
+* Still More JS Design Patterns : https://github.com/addyosmani/essential-js-design-patterns
+* Still More JS Design Patterns : http://www.dofactory.com/javascript/design-patterns
 * More to come ...
+
+### Road Map
+
+1. JSX -> NodeJS Proof-of-concept
+2. JSX -> NodeJS REST implementation
+3. Create a re-usable library of common JSX elements & tools
