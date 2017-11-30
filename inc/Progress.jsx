@@ -216,7 +216,7 @@ var ProgressBar = function(start, end, message) {
 
         self.window.pnl.progBarLabel = self.window.pnl.add(
             'statictext',
-            [20, 20, 320, 35],
+            [20, 15, 320, 25],
             "0 of " + end
         );
 
