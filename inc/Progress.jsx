@@ -1,6 +1,6 @@
 /**
  * @author      Scott Lewis <scott@vectoricons.net>
- * @date        2017-11-29
+ * @description A wrapper for the ExtendScript progress bar.
  * @link        https://vectoricons.net
  * @license     The MIT License (MIT)
  * @copyright   2017 Scott Lewis
