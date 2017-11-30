@@ -54,13 +54,15 @@ Then simply call the `ProgressBar` constructor:
 var progress = new ProgressBar(0, 100, 'Progess bar text');
 ```
 
-![Progress Bar preview.](images/progress-bar.png?raw=true "Progress Bar preview.")
+![Progress Bar preview.](images/progress-bar-01.png?raw=true "Progress Bar preview.")
 
 Update the message without incrementing the counter:
 
 ```
 progress.message('Update the text only');
 ```
+
+![Progress Bar preview.](images/progress-bar-02.png?raw=true "Progress Bar preview.")
 
 Increment the counter inside of whatever loop you are using:
 
@@ -70,6 +72,7 @@ for (i = 0; i < 100; i++) {
     $.sleep(500);
 }
 ```
+![Progress Bar preview.](images/progress-bar-03.png?raw=true "Progress Bar preview.")
    
 When your loop is finished, close the ProgressBar:
 

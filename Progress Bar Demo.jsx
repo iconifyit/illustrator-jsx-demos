@@ -98,7 +98,7 @@ var ProgressBarDemo = (function(CONFIG) {
 
         // Increment the counter up to max
         for (i = 0; i < max; i++) {
-            progress.update(localize({en_US: 'Processing item %1'}, i));
+            progress.update(localize({en_US: 'Processing item %1'}, i+1));
             $.sleep(500);
         }
 
