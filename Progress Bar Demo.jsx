@@ -2,7 +2,7 @@
  * @author      Scott Lewis <scott@iconify.it>
  * @copyright   2017 Scott Lewis
  * @version     1.0.0
- * @url         http://github.com/iconifyit
+ * @link        http://github.com/iconifyit
  *
  * ABOUT:
  *
