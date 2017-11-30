@@ -1,4 +1,11 @@
 /**
+ * I am not claiming ownership or authorship of this code. I tried to figure out who the original author
+ * was but I found so many copies of this exact code in so many libraries that it proved impossible to
+ * determine to whom to give credit. If anyone knows who the original author is, please let me know
+ * and I will gladly update the copyright statement. I have no desire to steal credit for someone
+ * else's work and always prefer to give credit and a link where it is due.
+ */
+/**
  * Add Array.indexOf support if not supported natively.
  */
 if(!Array.prototype.indexOf) {

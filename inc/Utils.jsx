@@ -1,20 +1,10 @@
 /**
  * @author      Scott Lewis <scott@vectoricons.net>
- * @date        2017-11-29
+ * @description Utility class with useful methods.
  * @link        https://vectoricons.net
  * @license     The MIT License (MIT)
  * @copyright   2017 Scott Lewis
  */
-/**
- * Set the base include path.
- */
-// #includepath "inc/";
-
-/**
- * Include dependencies.
- */
-// #include "JSON.jsx";
-// #include "Logger.jsx";
 
 /**
  * Lets get started.
