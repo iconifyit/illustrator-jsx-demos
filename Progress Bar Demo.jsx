@@ -89,7 +89,7 @@ var ProgressBarDemo = (function(CONFIG) {
 
         var max = 30;
 
-        var progress = new ProgressBar(0, max, 'Progress Bar Demoing');
+        var progress = new ProgressBar(0, max, 'Progress Bar Text.');
 
         // Update only the text message but not the counter.
         progress.message(

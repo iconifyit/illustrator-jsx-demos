@@ -54,6 +54,8 @@ Then simply call the `ProgressBar` constructor:
 var progress = new ProgressBar(0, 100, 'Progess bar text');
 ```
 
+![Progress Bar preview.](images/progress-bar.png?raw=true "Progress Bar preview.")
+
 Update the message without incrementing the counter:
 
 ```
