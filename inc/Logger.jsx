@@ -12,6 +12,10 @@
  */
 function Logger(name, folder) {
 
+    if (typeof(folder) == "undefined") {
+        folder = "/var/log/ai-jsx";
+    }
+
     /**
      * The log folder object.
      * @type {Folder}

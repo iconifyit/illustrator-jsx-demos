@@ -1,8 +1,8 @@
 ﻿/**
- * @author Scott Lewis <scott@iconify.it>
- * @copyright 2017 Scott Lewis
- * @version 1.0.0
- * @url http://github.com/iconifyit
+ * @author      Scott Lewis <scott@iconify.it>
+ * @copyright   2017 Scott Lewis
+ * @version     1.0.0
+ * @url         http://github.com/iconifyit
  *
  * ABOUT:
  *
@@ -40,7 +40,7 @@
  * Set includes path.
  * This can be a semi-colon separated list.
  */
-#includepath "inc/";
+#includepath "/Users/scott/github/iconify/illustrator-jsx-demos/inc/";
 
 /**
  * Include the libraries we need.
@@ -49,6 +49,7 @@
 #include "JSON.jsx";
 #include "Utils.jsx";
 #include "Logger.jsx";
+#include "Progress.jsx";
 
 /**
  * Disable Illustrator's alerts.
@@ -59,7 +60,6 @@ Utils.displayAlertsOff();
  * Set some global variables.
  */
 var DATE_STRING      = Utils.dateFormat(new Date().getTime());
-var SESSION_FILENAME = "ai-" + DATE_STRING + "-r1.json";
 
 /**
  * @type {{
@@ -71,7 +71,6 @@ var SESSION_FILENAME = "ai-" + DATE_STRING + "-r1.json";
  */
 var CONFIG = {
     APP_NAME         : "progress-bar-demo",
-    SRCFOLDER        : $.getenv("HOME") + "/progress-bar-demo",
     LOGFOLDER        : $.getenv("HOME") + "/progress-bar-demo/var/logs",
     LOGFILE          : $.getenv("HOME") + "/progress-bar-demo/var/logs/log-"  + DATE_STRING  + "-r1.log"
 };
@@ -81,81 +80,29 @@ var CONFIG = {
  * but it is a nice clean and organized way to write the code. It also avoids
  * cluttering the global scope.
  */
-var MyModule = (function(CONFIG) {
-
-    /**
-     * The module dialog.
-     * @type {Window}
-     */
-    var dialog = null;
-
-    /**
-     * The local scope logger object.
-     * @type {Logger}
-     */
-    var logger = new Logger(CONFIG.APP_NAME, CONFIG.LOGFOLDER);
-
-    /**
-     * The Dialog for this module.
-     * @returns {*}
-     * @constructor
-     */
-    var Dialog = function() {
-
-        /**
-         * Prototype object so we can extend this class.
-         * @type {{}}
-         */
-    	this.prototype = {};
-
-
-        /**
-         * Create the dialog window.
-         */
-        dialog = Utils.window(
-            "dialog",
-            localize({en_US: "My Module"}),
-            350, 350
-        );
-
-        /**
-         * The message box.
-         */
-        dialog.msgBox = dialog.add("statictext", [30,30,300,60], "");
-
-        /**
-         * The cancel button.
-         */
-        dialog.closeBtn = dialog.add("button", [30,275,120,315], "Close", {name:"close"});
-        dialog.closeBtn.onClick = this.doCloseCallback;
-        dialog.closeBtn.enabled = true;
-
-        /**
-         * The Open button.
-         */
-        dialog.openBtn = dialog.add("button", [130,275,220,315], "Open", {name:"open"});
-        dialog.openBtn.onClick = this.doOpenCallback;
-        dialog.openBtn.enabled = true;
-
-        return dialog;
-    };
-
-    /**
-     * Close button callback.
-     */
-    Dialog.prototype.doCloseCallback = function() {
-
-        dialog.msgBox.text = localize({en_US: "Close button clicked."});
-        dialog.close();
-        Utils.displayAlertsOn();
-    };
+var ProgressBarDemo = (function(CONFIG) {
 
     /**
      * Callback to open the selected session.
      */
-    Dialog.prototype.doOpenCallback = function() {
+    function main() {
 
-		// TODO: Add the progress bar code here.
+        var max = 30;
+
+        var progress = new ProgressBar(0, max, 'Progress Bar Demoing');
+
+        // Update only the text message but not the counter.
+        progress.message(
+            localize({en_US: 'You can change only the message.'})
+        );
+
+        // Increment the counter up to max
+        for (i = 0; i < max; i++) {
+            progress.update(localize({en_US: 'Processing item %1'}, i));
+            $.sleep(500);
+        }
+
+        progress.close();
     };
 
     /**
@@ -166,7 +113,7 @@ var MyModule = (function(CONFIG) {
          * Runs the module code.
          */
         run: function() {
-            new Dialog().show();
+            main();
         }
     }
 
@@ -176,4 +123,4 @@ var MyModule = (function(CONFIG) {
 /**
  * Run the module.
  */
-MyModule.run();
+ProgressBarDemo.run();

@@ -23,11 +23,59 @@ readable and well-organized scripts for Adobe Illustrator. Others, no doubt, hav
 ideas but I am always trying to make my code cleaner, better organized, more reusable, and
 more extensible.
 
+****
+
 ### Usage
 
-1. Place this script in Applications > Adobe Illustrator > Presets > en_US > Scripts
+#### My Module
+1. Place the entire illustrator-jsx-demos folder in Applications > Adobe Illustrator > Presets > en_US > Scripts
 2. Restart Adobe Illustrator to activate the script
-3. The script will be available under menu File > Scripts > My Module
+3. The script will be available under menu File > Scripts > jsx-illustrator-demos > My Module
+
+#### Progress Bar Demo
+1. Place the entire illustrator-jsx-demos folder in Applications > Adobe Illustrator > Presets > en_US > Scripts
+2. Restart Adobe Illustrator to activate the script
+3. The script will be available under menu File > Scripts > jsx-illustrator-demos > Progress Bar Demo
+
+If you want to incorporate a progress bar using the ProgressBar class in your app, everything you need is 
+in `Progress Bar Demo.jsx`. First, just include the following at the top of your main file:
+
+```
+#includepath "/path/to/illustrator-jsx-demos/inc/";
+#include "JSON.jsx";
+#include "Utils.jsx";
+#include "Logger.jsx";
+#include "Progress.jsx";
+```
+
+Then simply call the `ProgressBar` constructor:
+
+```
+var progress = new ProgressBar(0, 100, 'Progess bar text');
+```
+
+Update the message without incrementing the counter:
+
+```
+progress.message('Update the text only');
+```
+
+Increment the counter inside of whatever loop you are using:
+
+```
+for (i = 0; i < 100; i++) {
+    progress.update(localize({en_US: 'Processing item %1'}, i));
+    $.sleep(500);
+}
+```
+   
+When your loop is finished, close the ProgressBar:
+
+```
+progress.close();
+```
+
+****
 
 ### NO WARRANTIES
 
@@ -39,6 +87,17 @@ YOU USE THIS SCRIPT COMPLETELY AT YOUR OWN RISK AND UNDER NO CIRCUMSTANCES WILL
 THE DEVELOPER AND/OR DISTRIBUTOR OF THIS SCRIPT BE HELD LIABLE FOR DAMAGES OF
 ANY KIND INCLUDING LOSS OF DATA OR DAMAGE TO HARDWARE OR SOFTWARE. IF YOU DO
 NOT AGREE TO THESE TERMS, DO NOT USE THIS SCRIPT.
+
+****
+
+### Road Map
+
+1. JSX -> NodeJS Proof-of-concept
+2. JSX -> NodeJS REST implementation
+3. JSX -> Google Chrome Plugin proof-of-concept
+4. Create a re-usable library of common JSX elements & tools
+
+****
 
 ### References
 
@@ -62,9 +121,3 @@ This list is by no means exhaustive.
 * Still More JS Design Patterns : https://github.com/addyosmani/essential-js-design-patterns
 * Still More JS Design Patterns : http://www.dofactory.com/javascript/design-patterns
 * More to come ...
-
-### Road Map
-
-1. JSX -> NodeJS Proof-of-concept
-2. JSX -> NodeJS REST implementation
-3. Create a re-usable library of common JSX elements & tools

@@ -1,38 +1,20 @@
 /**
- * The MIT License (MIT)
- *
- * Copyright (c) 2017 Scott Lewis
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
+ * @author      Scott Lewis <scott@vectoricons.net>
+ * @date        2017-11-29
+ * @link        https://vectoricons.net
+ * @license     The MIT License (MIT)
+ * @copyright   2017 Scott Lewis
  */
-
 /**
  * Set the base include path.
  */
-#includepath "inc/";
+// #includepath "inc/";
 
 /**
  * Include dependencies.
  */
-#include "JSON.jsx";
-#include "Logger.jsx";
+// #include "JSON.jsx";
+// #include "Logger.jsx";
 
 /**
  * Lets get started.
@@ -562,6 +544,14 @@ Utils.showProgressBar = function(maxvalue) {
 };
 
 /**
+ * Hides and destroys the progress bar.
+ */
+Utils.hideProgressBar = function() {
+    Utils.progress.hide();
+    Utils.progress = null;
+}
+
+/**
  * Updates the progress bar.
  * @param progress
  * @returns {*}
@@ -619,4 +609,137 @@ Utils.slugger = function(subject) {
         return decodeURIComponent(subject).replace(' ', '-');
     }
     return subject;
+};
+
+/**
+ * Gets the artboard index of the current selection. This is a brute-force approach
+ * and not the ideal solution but it's the best we can currently do.
+ * @author  carlos canto 09/28/2013
+ * @see     http://forums.adobe.com/message/5721205?tstart=0#5721205
+ * @param   {GroupItem}     The selection for which see want the artboard.
+ * @returns {integer}       Returns the index of the artboard.
+ */
+Utils.getArtboardOfGroupItem = function(groupItem) {
+
+    var index = -1;
+    var doc   = app.activeDocument;
+
+    // Loop through each artboard.
+    for(i=0; i<doc.artboards.length; i++) {
+
+        // Activate each artboard.
+        doc.artboards.setActiveArtboardIndex(i);
+
+        // Select all items on the artboard.
+        doc.selectObjectsOnActiveArtboard();
+
+        // Test our original selection to see if it is now selected.
+        index = doc.artboards.getActiveArtboardIndex();
+
+        if (groupItem.selected) {
+            return doc.artboards.getActiveArtboardIndex();
+        }
+
+        // We didn't find our object, keep going.
+        doc.selection = null;
+    }
+
+    return index;
+};
+
+/**
+ * Get the index of an artboard by its name.
+ * @param {string} name
+ * @returns {number}
+ */
+Utils.getArtboardIndexByName = function(name) {
+    var doc = app.activeDocument;
+    if (artboard = doc.artboards.getByName(name)) {
+        for (i = 0; i < doc.artboards.length; i++) {
+            if (doc.artboards[i] == artboard) {
+                return i;
+            }
+        }
+    }
+    return -1;
+};
+
+/**
+ * Get the artboard index using the name of the items on the artboard.
+ * @param itemName
+ * @returns {number}
+ */
+Utils.getArtboardIndexItemByName = function(itemName) {
+
+    var index = -1;
+    var doc   = app.activeDocument;
+
+    // Loop through each artboard.
+    for(i = 0; i < doc.artboards.length; i++) {
+
+        // Activate each artboard.
+        doc.artboards.setActiveArtboardIndex(i);
+
+        // Select all items on the artboard.
+        doc.selectObjectsOnActiveArtboard();
+
+        logger.info("Checking artboard " + i + " for item " + itemName);
+
+        if (doc.selection.length) {
+            logger.info("Selected items on artboard " + i);
+            if (typeof(doc.selection.name) != "undefined") {
+                logger.inf("Found named selection on artboard " + i);
+                if (doc.selection.name.toUpperCase() == itemName.toUpperCase()) {
+                    logger.info("Found item " + itemName + " on artboard " + i);
+                    return doc.artboards.getActiveArtboardIndex();
+                }
+            }
+        }
+
+        // We didn't find our object, keep going.
+        doc.selection = null;
+    }
+
+    return index;
+}
+
+/**
+ * Set active artboard by name.
+ * @param {string} name
+ */
+Utils.setActiveArtboardByName = function(name) {
+    var doc = app.activeDocument;
+    doc.artboards.setActiveArtboardIndex(Utils.getArtboardIndexByName(name));
+};
+
+/**
+ * Get a unique universal identifier.
+ * RFC4122 version 4 compliant.
+ * @returns {string}
+ */
+Utils.generateUUID = function() {
+    var d = new Date().getTime();
+    if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
+        d += performance.now(); //use high-precision timer if available
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+};
+
+/**
+ * @experimental
+ * Rename artboard groupItems by artboard name
+ */
+Utils.renameGroupItemsByArtboardNames = function() {
+    var doc = app.activeDocument;
+    for (i = 0; i < doc.artboards.length; i++) {
+        doc.artboards.setActiveArtboardIndex(i);
+        var ab = doc.artboards[doc.artboards.getActiveArtboardIndex()];
+        doc.selectObjectsOnActiveArtboard();
+        app.executeMenuCommand('group');
+        selection.name = ab.name.indexOf("Artboard ") != -1 ? "Group " + i : ab.name;
+    }
 };
