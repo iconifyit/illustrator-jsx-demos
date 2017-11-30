@@ -64,6 +64,7 @@ progress.message('Update the text only');
 
 ![Progress Bar preview.](images/progress-bar-02.png?raw=true "Progress Bar preview.")
 
+
 Increment the counter inside of whatever loop you are using:
 
 ```
